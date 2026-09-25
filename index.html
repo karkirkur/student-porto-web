@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Abdurrahman Afkaar, an Informatics student exploring software and web development." />
+    <title>Abdurrahman Afkaar — Informatics Student</title>
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #10243e;
+        --muted: #53657a;
+        --line: #d8e0ea;
+        --paper: #f5f7fa;
+        --white: #fff;
+        --navy: #173b64;
+        --navy-dark: #0e2949;
+        --amber: #b97808;
+        --amber-dark: #8f5a00;
+        --amber-soft: #fff2d5;
+        --header-bg: rgba(245, 247, 250, .92);
+        --contact-copy: #b8c5d6;
+        --contact-link: #dce8ff;
+        --max: 1120px;
+      }
+      [data-theme="dark"] {
+        --ink: #eef4fb;
+        --muted: #b3c1d2;
+        --line: #38506b;
+        --paper: #0c1d32;
+        --white: #142e4d;
+        --navy: #6f9ed2;
+        --navy-dark: #08182b;
+        --amber: #f0b83f;
+        --amber-dark: #f4c65f;
+        --amber-soft: #3a2d13;
+        --header-bg: rgba(12, 29, 50, .92);
+        --contact-copy: #c3d0df;
+        --contact-link: #f4d58c;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.6; }
+      a { color: inherit; }
+      .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 20; padding: .7rem 1rem; color: var(--white); background: var(--ink); border-radius: .5rem; }
+      .skip-link:focus { top: 1rem; }
+      .container { width: min(calc(100% - 3rem), var(--max)); margin: 0 auto; }
+      header { position: sticky; top: 0; z-index: 10; background: var(--header-bg); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+      .nav { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+      .brand { font-family: "Space Grotesk", sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -.03em; text-decoration: none; }
+      .brand span { color: var(--amber); }
+      .nav-links { display: flex; align-items: center; gap: 1.6rem; margin: 0; padding: 0; list-style: none; font-size: .9rem; color: var(--muted); }
+      .nav-links a { text-decoration: none; }
+      .nav-links a:hover, .nav-links a:focus-visible { color: var(--amber-dark); }
+      .menu-button { display: none; padding: .5rem; color: var(--ink); background: transparent; border: 0; cursor: pointer; }
+      .theme-toggle { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.25rem; padding: .4rem .7rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: transparent; font: inherit; font-size: .82rem; font-weight: 600; cursor: pointer; transition: .2s ease; }
+      .theme-toggle:hover, .theme-toggle:focus-visible { border-color: var(--amber); color: var(--amber-dark); background: var(--amber-soft); }
+      .theme-icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+      main { overflow: hidden; }
+      .hero { position: relative; padding: 7.6rem 0 7rem; }
+      .hero::after { position: absolute; content: ""; width: 390px; height: 390px; top: 10%; right: -10%; z-index: -1; background: radial-gradient(circle, rgba(185,120,8,.16), transparent 67%); }
+      .eyebrow { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 1.2rem; color: var(--amber-dark); font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .eyebrow::before { width: 25px; height: 2px; content: ""; background: var(--amber); }
+      h1, h2, h3 { margin: 0; font-family: "Space Grotesk", sans-serif; line-height: 1.12; letter-spacing: -.045em; }
+      h1 { max-width: 760px; font-size: clamp(3.4rem, 8vw, 6.5rem); }
+      .hero-copy { max-width: 650px; margin: 1.5rem 0 2rem; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+      .button { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .75rem 1.15rem; border: 1px solid var(--amber); border-radius: .5rem; color: var(--navy-dark); background: var(--amber); font-weight: 600; text-decoration: none; transition: .2s ease; }
+      .button:hover, .button:focus-visible { background: #d08b0a; border-color: #d08b0a; transform: translateY(-2px); }
+      .button.secondary { color: var(--navy); background: transparent; }
+      .button.secondary:hover, .button.secondary:focus-visible { color: var(--white); background: var(--navy); border-color: var(--navy); }
+      .section { padding: 6.5rem 0; }
+      .section.alt { background: var(--white); }
+      .section-heading { display: grid; grid-template-columns: .75fr 1.25fr; gap: 2rem; margin-bottom: 3.2rem; }
+      .section-heading h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+      .section-heading p { max-width: 510px; margin: .2rem 0 0; color: var(--muted); }
+      .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 4rem; align-items: start; }
+      .about-grid p { max-width: 680px; margin: 0; color: var(--muted); font-size: 1.08rem; }
+      .availability { padding: 1.4rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--paper); }
+      .availability strong { display: block; margin-bottom: .35rem; font-family: "Space Grotesk", sans-serif; }
+      .availability p { font-size: .95rem; }
+      .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+      .skill-card { padding: 1.6rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--white); }
+      .skill-card h3 { margin-bottom: 1.1rem; font-size: 1.15rem; }
+      .tags { display: flex; flex-wrap: wrap; gap: .55rem; }
+      .tag { padding: .42rem .7rem; border-radius: 999px; color: var(--amber-dark); background: var(--amber-soft); font-size: .86rem; font-weight: 600; }
+      .timeline { position: relative; display: grid; gap: 0; margin-left: .55rem; border-left: 1px solid var(--line); }
+      .timeline-item { position: relative; display: grid; grid-template-columns: 175px 1fr; gap: 2rem; padding: 0 0 3rem 2.2rem; }
+      .timeline-item:last-child { padding-bottom: 0; }
+      .timeline-item::before { position: absolute; top: .3rem; left: -5px; width: 9px; height: 9px; content: ""; border: 3px solid var(--paper); border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 1px var(--amber); }
+      .timeline-date { color: var(--amber-dark); font-size: .83rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+      .timeline h3 { margin-bottom: .45rem; font-size: 1.35rem; letter-spacing: -.03em; }
+      .timeline p { max-width: 650px; margin: 0; color: var(--muted); }
+      .building { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+      .building-card { padding: 2rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--paper); }
+      .building-card .status { display: inline-block; margin-bottom: 1.2rem; padding: .3rem .6rem; border-radius: 999px; color: var(--amber-dark); background: var(--amber-soft); font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+      .building-card h3 { margin-bottom: .7rem; font-size: 1.45rem; }
+      .building-card p { margin: 0; color: var(--muted); }
+      .education { display: grid; grid-template-columns: auto 1fr; gap: 1.3rem; align-items: start; }
+      .education-mark { display: grid; width: 52px; height: 52px; place-items: center; border-radius: .65rem; color: var(--navy-dark); background: var(--amber); font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+      .education h3 { margin-bottom: .35rem; font-size: 1.35rem; }
+      .education p { margin: 0; color: var(--muted); }
+      .contact { position: relative; padding: 6rem 0; color: var(--white); background: var(--navy-dark); }
+      .contact::before { position: absolute; content: ""; width: 500px; height: 500px; top: -65%; right: -8%; border-radius: 50%; background: rgba(185, 120, 8, .28); filter: blur(2px); }
+      .contact .eyebrow { color: #f3c766; }
+      .contact .eyebrow::before { background: #f3c766; }
+      .contact-inner { position: relative; display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+      .contact h2 { max-width: 560px; font-size: clamp(2.3rem, 5vw, 4rem); }
+      .contact-copy { max-width: 470px; margin: 1rem 0 0; color: var(--contact-copy); }
+      .contact-links { display: flex; flex-wrap: wrap; gap: 1.3rem; margin-top: 1.8rem; }
+      .contact-links a { color: var(--contact-link); font-weight: 600; text-decoration: none; }
+      .contact-links a:hover, .contact-links a:focus-visible { color: var(--white); text-decoration: underline; }
+      footer { padding: 1.4rem 0; color: #b6c2d0; background: var(--navy-dark); border-top: 1px solid #29466a; font-size: .86rem; }
+      .footer-inner { display: flex; justify-content: space-between; gap: 1rem; }
+      :focus-visible { outline: 3px solid #e0a52b; outline-offset: 3px; }
+      [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+      [data-reveal].visible { opacity: 1; transform: none; }
+      @media (max-width: 760px) {
+        .container { width: min(calc(100% - 2rem), var(--max)); }
+        .nav-links { display: none; position: absolute; top: 72px; right: 1rem; left: 1rem; flex-direction: column; align-items: stretch; gap: 0; padding: .5rem; border: 1px solid var(--line); border-radius: .6rem; background: var(--white); box-shadow: 0 15px 30px rgba(16,36,62,.12); }
+        .nav-links.open { display: flex; }
+        .nav-links a { display: block; padding: .7rem; }
+        .menu-button { display: inline-flex; }
+        .theme-toggle { margin-left: auto; margin-right: .55rem; }
+        .hero { padding: 5.5rem 0 5rem; }
+        .section { padding: 4.8rem 0; }
+        .section-heading, .about-grid, .skill-groups, .building { grid-template-columns: 1fr; gap: 1.4rem; }
+        .section-heading { margin-bottom: 2rem; }
+        .timeline-item { grid-template-columns: 1fr; gap: .3rem; padding-left: 1.5rem; }
+        .contact-inner { align-items: start; flex-direction: column; }
+        .footer-inner { flex-direction: column; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+        [data-reveal] { opacity: 1; transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header>
+      <nav class="container nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Abdurrahman Afkaar home">AA<span>.</span></a>
+        <ul class="nav-links" id="navigation-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="assets/abdurrahman-resume.pdf" download>Resume ↗</a></li>
+        </ul>
+        <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+          <span class="theme-label">Light mode</span>
+        </button>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="navigation-links" aria-label="Open navigation menu">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </nav>
+    </header>
+    <main id="main-content">
+      <section class="hero container" id="top">
+        <p class="eyebrow" data-reveal>Informatics student · Jakarta</p>
+        <h1 data-reveal>Learning to build useful things for the web.</h1>
+        <p class="hero-copy" data-reveal>I’m Abdurrahman Afkaar, a first-year Informatics student at UIN Syarif Hidayatullah Jakarta, building a foundation in software, web development, and thoughtful collaboration.</p>
+        <div class="hero-actions" data-reveal>
+          <a class="button" href="#contact">Let’s connect <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="assets/abdurrahman-resume.pdf" download>Download resume <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section class="section alt" id="about">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2>A little about me</h2>
+            <p>Curious, organized, and early in the journey—with a practical interest in learning by doing.</p>
+          </div>
+          <div class="about-grid" data-reveal>
+            <p>I’m studying for an S1 in Informatics and looking for opportunities to grow through software or web-development internships. Alongside coding basics, I’ve developed experience coordinating event teams, communicating across responsibilities, and solving problems under pressure.</p>
+            <div class="availability"><strong>Open to learning</strong><p>I’m currently seeking an internship where I can contribute, ask good questions, and keep improving my technical foundation.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2>Skills in progress</h2>
+            <p>A clear view of the tools and strengths I’m bringing into my next learning opportunity.</p>
+          </div>
+          <div class="skill-groups" data-reveal>
+            <article class="skill-card"><h3>Technical foundations</h3><div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">HTML</span><span class="tag">Java</span></div></article>
+            <article class="skill-card"><h3>Creative & productivity</h3><div class="tags"><span class="tag">Canva</span><span class="tag">Figma</span><span class="tag">CapCut</span><span class="tag">Microsoft Office</span></div></article>
+            <article class="skill-card"><h3>How I work</h3><div class="tags"><span class="tag">Teamwork</span><span class="tag">Communication</span><span class="tag">Time management</span><span class="tag">Coordination</span><span class="tag">Leadership</span><span class="tag">Problem-solving</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="experience">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2>Experience & leadership</h2>
+            <p>Hands-on responsibilities that have shaped how I collaborate, organize, and follow through.</p>
+          </div>
+          <div class="timeline" data-reveal>
+            <article class="timeline-item"><div class="timeline-date">June 2024</div><div><h3>Chairperson · ICT CUP 2024</h3><p>Responsible for the overall event, coordinating the team and managing tasks while strengthening communication, leadership, and problem-solving under pressure.</p></div></article>
+            <article class="timeline-item"><div class="timeline-date">October 2024</div><div><h3>Event staff · I-TECH 2024</h3><p>Helped design the event flow, prepare the rundown, coordinate technical needs, and support event-day operations.</p></div></article>
+            <article class="timeline-item"><div class="timeline-date">September 2023</div><div><h3>Event staff · I-TECH 2023</h3><p>Supported event planning through rundown preparation, event-flow design, and technical coordination on the day.</p></div></article>
+            <article class="timeline-item"><div class="timeline-date">Jan 2023 — Oct 2024</div><div><h3>Coding staff & mentor · Informatics Communication & Technology</h3><p>Learned and worked on assigned projects in the extracurricular’s Coding division, then supported peers as a Coding division mentor.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="building">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <h2>Currently building</h2>
+            <p>A small, honest space for the software projects I’m learning through—without overstating where they are yet.</p>
+          </div>
+          <div class="building" data-reveal>
+            <article class="building-card"><span class="status">In progress</span><h3>Software projects</h3><p>I’m exploring project ideas and strengthening my coding fundamentals. More details will be added as the work develops.</p></article>
+            <article class="building-card"><span class="status">Next chapter</span><h3>Web development foundations</h3><p>Practising how to turn clear ideas into accessible, responsive interfaces while continuing to learn the fundamentals behind them.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="education">
+        <div class="container">
+          <div class="section-heading" data-reveal><h2>Education</h2><p>Building a strong academic base for a career in technology.</p></div>
+          <div class="education" data-reveal>
+            <div class="education-mark" aria-hidden="true">S1</div>
+            <div><h3>Informatics — Faculty of Science and Technology</h3><p>Universitas Islam Negeri Syarif Hidayatullah Jakarta</p><p>September 2025 — Present · First-year student</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container contact-inner" data-reveal>
+          <div><p class="eyebrow">Have an opportunity?</p><h2>Let’s start a conversation.</h2><p class="contact-copy">I’m open to internship opportunities and conversations about learning, building, and contributing to a team.</p></div>
+          <div class="contact-links" aria-label="Contact links"><a href="mailto:abdurrahmanafkaar@gmail.com">Email me ↗</a><a href="https://www.linkedin.com/in/abdurrahman-afkaar-21a988368/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/karkirkur" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+        </div>
+      </section>
+    </main>
+    <footer><div class="container footer-inner"><span>© 2025 Abdurrahman Afkaar</span><span>Built with curiosity and care.</span></div></footer>
+    <script>
+      const menuButton = document.querySelector(".menu-button");
+      const navLinks = document.querySelector(".nav-links");
+      const themeToggle = document.querySelector(".theme-toggle");
+      const themeIcon = themeToggle.querySelector(".theme-icon");
+      const themeLabel = themeToggle.querySelector(".theme-label");
+      const sunIcon = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>';
+      const moonIcon = '<path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>';
+      const updateThemeToggle = () => {
+        const darkMode = document.documentElement.dataset.theme === "dark";
+        themeToggle.setAttribute("aria-label", darkMode ? "Switch to light mode" : "Switch to dark mode");
+        themeToggle.setAttribute("aria-pressed", String(darkMode));
+        themeIcon.innerHTML = darkMode ? moonIcon : sunIcon;
+        themeLabel.textContent = darkMode ? "Dark mode" : "Light mode";
+      };
+      themeToggle.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem("portfolio-theme", nextTheme);
+        updateThemeToggle();
+      });
+      updateThemeToggle();
+      menuButton.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+      });
+      navLinks.addEventListener("click", (event) => {
+        if (event.target.matches("a")) {
+          navLinks.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation menu");
+        }
+      });
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12 });
+        revealItems.forEach((item) => observer.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("visible"));
+      }
+    </script>
+  </body>
+</html>
